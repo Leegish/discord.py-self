@@ -284,6 +284,11 @@ class Activity(BaseActivity):
         ret['type'] = int(self.type)
         if self.emoji:
             ret['emoji'] = self.emoji.to_dict()
+
+        if self.buttons:
+            ret['buttons'] = [button['label'] for button in self.buttons]
+            ret['metadata'] = {'button_urls': [button['url'] for button in self.buttons]}
+
         return ret
 
     @property
