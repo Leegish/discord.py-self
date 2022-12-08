@@ -2179,7 +2179,8 @@ class ConnectionState:
             if isinstance(channel, DMChannel):
                 member = channel.recipient
 
-            elif isinstance(channel, (Thread, TextChannel)) and guild is not None:
+            # there might be more, 'StageChannel' might be one of them
+            elif isinstance(channel, (Thread, TextChannel, VoiceChannel)) and guild is not None:
                 member = guild.get_member(user_id)
 
                 if member is None:
