@@ -2170,6 +2170,8 @@ class ConnectionState:
             asyncio.create_task(logging_coroutine(coro, info='Voice Protocol voice server update handler'))
 
     def parse_typing_start(self, data: gw.TypingStartEvent) -> None:
+        self.dispatch('raw_typing', data) # why remov?
+
         channel, guild = self._get_guild_channel(data)
         if channel is not None:
             member = None
